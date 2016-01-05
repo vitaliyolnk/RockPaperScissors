@@ -10,7 +10,7 @@ namespace RPS.WinUIClient.ViewModels
         private PlayerType _playerTwo;
         private PlayerType _playerOne;
         private int _playerOneScore;
-        private int _playerTwoScore;        
+        private int _playerTwoScore;
         private ObservableCollection<Play> _palys = new ObservableCollection<Play>();
         private bool _computerVsComputer = true;
         private string _gameScore;
@@ -23,14 +23,15 @@ namespace RPS.WinUIClient.ViewModels
             }
             set
             {
-                if (_playerOne == PlayerType.Human && PlayerTwo == PlayerType.Human)
-                {
-                    throw new InvalidOperationException("One of the players must be Human or both Computers.");
-                }
-
                 if (value != _playerOne)
                 {
                     _playerOne = value;
+
+                    if (_playerOne == PlayerType.Human && _playerTwo == PlayerType.Human)
+                    {
+                        throw new InvalidOperationException("One of the players must be Human or both Computers.");
+                    }
+
                     NotifyPropertyChanged();
                 }
             }
@@ -44,14 +45,15 @@ namespace RPS.WinUIClient.ViewModels
             }
             set
             {
-                if (_playerTwo == PlayerType.Human && PlayerOne == PlayerType.Human)
-                {
-                    throw new InvalidOperationException("One of the players must be Human or both Computers.");
-                }
-
                 if (value != _playerTwo)
                 {
                     _playerTwo = value;
+
+                    if (_playerTwo == PlayerType.Human && _playerOne == PlayerType.Human)
+                    {
+                        throw new InvalidOperationException("One of the players must be Human or both Computers.");
+                    }
+
                     NotifyPropertyChanged();
                 }
             }
@@ -102,16 +104,23 @@ namespace RPS.WinUIClient.ViewModels
             set
             {
                 if (value != _palys)
-                { _palys = value; NotifyPropertyChanged(); }
+                {
+                    _palys = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 
         public bool ComputerVsComputer
         {
             get { return _computerVsComputer; }
-            set {
+            set
+            {
                 if (value != _computerVsComputer)
-                { _computerVsComputer = value; NotifyPropertyChanged(); }
+                {
+                    _computerVsComputer = value;
+                    NotifyPropertyChanged();
+                }
             }
         }
 

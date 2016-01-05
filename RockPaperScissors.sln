@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.RandomValueGenerator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Shared", "RPS.Shared\RPS.Shared.csproj", "{6A7A52E2-2F54-48F1-AC59-989B525EEB8C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RPS.Client.Test", "RPS.Client.Test\RPS.Client.Test.csproj", "{D12F2591-CAC0-46BD-AB0D-BEF733ACEEC1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{6F6E074C-2A4A-44E0-9F73-5E4BAA0AABD4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,8 +43,16 @@ Global
 		{6A7A52E2-2F54-48F1-AC59-989B525EEB8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6A7A52E2-2F54-48F1-AC59-989B525EEB8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6A7A52E2-2F54-48F1-AC59-989B525EEB8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D12F2591-CAC0-46BD-AB0D-BEF733ACEEC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D12F2591-CAC0-46BD-AB0D-BEF733ACEEC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D12F2591-CAC0-46BD-AB0D-BEF733ACEEC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D12F2591-CAC0-46BD-AB0D-BEF733ACEEC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8FB497D-FF43-4A74-830D-C807411A50A0} = {6F6E074C-2A4A-44E0-9F73-5E4BAA0AABD4}
+		{D12F2591-CAC0-46BD-AB0D-BEF733ACEEC1} = {6F6E074C-2A4A-44E0-9F73-5E4BAA0AABD4}
 	EndGlobalSection
 EndGlobal

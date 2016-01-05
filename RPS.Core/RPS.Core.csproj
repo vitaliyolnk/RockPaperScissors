@@ -39,8 +39,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\IComputer.cs" />
-    <Compile Include="Abstract\IHuman.cs" />
     <Compile Include="Abstract\IPlayRPSGame.cs" />
     <Compile Include="Players\Computer.cs" />
     <Compile Include="Players\Human.cs" />

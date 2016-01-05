@@ -55,7 +55,6 @@ namespace RPS.WinUIClient
             game.PlayerTwo = PlayerType.Computer;
             if (game.PlayerOne == PlayerType.Computer) game.ComputerVsComputer = true;
             else game.ComputerVsComputer = false;
-
         }
 
         private void btnReset_Click(object sender, RoutedEventArgs e)
@@ -93,7 +92,6 @@ namespace RPS.WinUIClient
             {
                 playGame.PlayRPSHumanVsComputer(game, Selection.Scissors);
             }
-
         }
 
         private void btnRock2_Click(object sender, RoutedEventArgs e)

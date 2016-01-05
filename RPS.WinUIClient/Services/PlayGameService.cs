@@ -13,10 +13,10 @@ namespace RPS.WinUIClient.Services
     public class PlayGameService : IPlayGame
     {
         static IContainer container { get; set; }
-        IPlayRPSGame _rpsGame;
         int result;
         Play currentPlay;
         IRandomSelection _randomSelector;
+        IPlayRPSGame _rpsGame;
 
         public PlayGameService()
         {
@@ -72,15 +72,15 @@ namespace RPS.WinUIClient.Services
             {
                 case Result.PlayerOneWon:
                     viewModel.PlayerOneScore++;
-                    currentPlay.Result = "Player 1 won!";
+                    currentPlay.Result = Resource.PlayerOneWon;
                     break;
                 case Result.PlayerTwoWon:
                     viewModel.PlayerTwoScore++;
-                    currentPlay.Result = "Player 2 won!";
+                    currentPlay.Result = Resource.PlayerTwoWon;
                     break;
                 case Result.Draw:
                 default:
-                    currentPlay.Result = "It's a Draw!";
+                    currentPlay.Result = Resource.Draw;
                     break;
             }
 

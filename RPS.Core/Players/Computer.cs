@@ -1,4 +1,5 @@
 ﻿using RPS.RandomValueGenerator.Abstract;
+using RPS.Shared;
 
 namespace RPS.Core.Players
 {
@@ -13,7 +14,7 @@ namespace RPS.Core.Players
 
         public void SetRandomValue()
         {
-           base.SetSelection(_randomeSelection.Select());
+           base.SetSelection((Selection)_randomeSelection.Select());
         }
     }
 }

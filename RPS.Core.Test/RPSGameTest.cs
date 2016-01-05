@@ -15,7 +15,6 @@ namespace RPS.Core.Test
         {
             using (var mock = AutoMock.GetLoose())
             {
-                // Arrange - configure the mock
                 mock.Mock<RPSPlayer>().Setup(h => h.SetSelection(Selection.Paper));
                 var hum = mock.Create<Human>();
 
@@ -25,12 +24,10 @@ namespace RPS.Core.Test
                 mock.Mock<IPlayRPSGame>().Setup(p => p.Throw(hum, comp)).Returns(Result.PlayerOneWon);
                 var play = mock.Create<RPSGamePlayer>();
 
-                // Act
                 hum.SetSelection(Selection.Paper);
                 comp.SetRandomValue();
                 play.Throw(hum, comp);
 
-                // Assert - assert on the mock
                 Assert.IsTrue(Enum.IsDefined(typeof(Result), play.Throw(hum, comp)));
             }
         }
@@ -40,25 +37,22 @@ namespace RPS.Core.Test
         {
             using (var mock = AutoMock.GetLoose())
             {
-                // Arrange - configure the mock
-                mock.Mock<RPSPlayer>().Setup(h=>h.SetSelection(Selection.Paper));
+                mock.Mock<RPSPlayer>().Setup(h => h.SetSelection(Selection.Paper));
                 var hum = mock.Create<Human>();
-                
+
                 mock.Mock<IRandomSelection>().Setup(x => x.Select()).Returns(Selection.Rock);
                 var comp = mock.Create<Computer>();
 
                 mock.Mock<IPlayRPSGame>().Setup(p => p.Throw(hum, comp)).Returns(Result.PlayerOneWon);
                 var play = mock.Create<RPSGamePlayer>();
 
-                // Act
                 hum.SetSelection(Selection.Paper);
                 comp.SetRandomValue();
                 play.Throw(hum, comp);
 
-                // Assert - assert on the mock
-                Assert.IsTrue(Result.PlayerOneWon == play.Throw(hum, comp));
-                Assert.IsFalse(Result.PlayerTwoWon == play.Throw(hum, comp));
-                Assert.IsFalse(Result.Draw == play.Throw(hum, comp));
+                Assert.AreEqual(Result.PlayerOneWon, play.Throw(hum, comp));
+                Assert.AreNotEqual(Result.PlayerTwoWon, play.Throw(hum, comp));
+                Assert.AreNotEqual(Result.Draw, play.Throw(hum, comp));
             }
         }
 
@@ -67,7 +61,6 @@ namespace RPS.Core.Test
         {
             using (var mock = AutoMock.GetLoose())
             {
-                // Arrange - configure the mock
                 mock.Mock<RPSPlayer>().Setup(h => h.SetSelection(Selection.Rock));
                 var hum = mock.Create<Human>();
 
@@ -77,15 +70,13 @@ namespace RPS.Core.Test
                 mock.Mock<IPlayRPSGame>().Setup(p => p.Throw(hum, comp)).Returns(Result.Draw);
                 var play = mock.Create<RPSGamePlayer>();
 
-                // Act
                 hum.SetSelection(Selection.Rock);
                 comp.SetRandomValue();
                 play.Throw(hum, comp);
 
-                // Assert - assert on the mock
-                Assert.IsTrue(Result.Draw == play.Throw(hum, comp));
-                Assert.IsFalse(Result.PlayerTwoWon == play.Throw(hum, comp));
-                Assert.IsFalse(Result.PlayerOneWon == play.Throw(hum, comp));
+                Assert.AreEqual(Result.Draw, play.Throw(hum, comp));
+                Assert.AreNotEqual(Result.PlayerTwoWon, play.Throw(hum, comp));
+                Assert.AreNotEqual(Result.PlayerOneWon, play.Throw(hum, comp));
             }
         }
 
@@ -94,7 +85,6 @@ namespace RPS.Core.Test
         {
             using (var mock = AutoMock.GetLoose())
             {
-                // Arrange - configure the mock
                 mock.Mock<RPSPlayer>().Setup(h => h.SetSelection(Selection.Scissors));
                 var hum = mock.Create<Human>();
 
@@ -104,15 +94,13 @@ namespace RPS.Core.Test
                 mock.Mock<IPlayRPSGame>().Setup(p => p.Throw(hum, comp)).Returns(Result.PlayerTwoWon);
                 var play = mock.Create<RPSGamePlayer>();
 
-                // Act
                 hum.SetSelection(Selection.Scissors);
                 comp.SetRandomValue();
                 play.Throw(hum, comp);
 
-                // Assert - assert on the mock
-                Assert.IsTrue(Result.PlayerTwoWon == play.Throw(hum, comp));
-                Assert.IsFalse(Result.Draw == play.Throw(hum, comp));
-                Assert.IsFalse(Result.PlayerOneWon == play.Throw(hum, comp));
+                Assert.AreEqual(Result.PlayerTwoWon, play.Throw(hum, comp));
+                Assert.AreNotEqual(Result.Draw, play.Throw(hum, comp));
+                Assert.AreNotEqual(Result.PlayerOneWon,play.Throw(hum, comp));
             }
         }
 
@@ -134,9 +122,9 @@ namespace RPS.Core.Test
 
                 play.Throw(comp1, comp2);
 
-                Assert.IsTrue(Result.PlayerTwoWon == play.Throw(comp1, comp2));
-                Assert.IsFalse(Result.Draw == play.Throw(comp1, comp2));
-                Assert.IsFalse(Result.PlayerOneWon == play.Throw(comp1, comp2));
+                Assert.AreEqual(Result.PlayerTwoWon, play.Throw(comp1, comp2));
+                Assert.AreNotEqual(Result.Draw, play.Throw(comp1, comp2));
+                Assert.AreNotEqual(Result.PlayerOneWon, play.Throw(comp1, comp2));
             }
         }
 
@@ -158,9 +146,9 @@ namespace RPS.Core.Test
 
                 play.Throw(comp1, comp2);
 
-                Assert.IsTrue(Result.PlayerOneWon == play.Throw(comp1, comp2));
-                Assert.IsFalse(Result.Draw == play.Throw(comp1, comp2));
-                Assert.IsFalse(Result.PlayerTwoWon == play.Throw(comp1, comp2));
+                Assert.AreEqual(Result.PlayerOneWon, play.Throw(comp1, comp2));
+                Assert.AreNotEqual(Result.Draw, play.Throw(comp1, comp2));
+                Assert.AreNotEqual(Result.PlayerTwoWon, play.Throw(comp1, comp2));
             }
         }
     }

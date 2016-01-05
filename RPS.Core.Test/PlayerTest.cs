@@ -1,6 +1,8 @@
 ﻿using Autofac.Extras.Moq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using RPS.Core.Players;
+using RPS.RandomValueGenerator;
 using RPS.RandomValueGenerator.Abstract;
 using RPS.Shared;
 using System;
@@ -19,7 +21,7 @@ namespace RPS.Core.Test
                 var sut = mock.Create<Human>();
 
                 sut.SetSelection(Selection.Rock);
-                
+
                 Assert.AreEqual(Selection.Rock, sut.PlaySelection);
             }
         }
@@ -44,28 +46,36 @@ namespace RPS.Core.Test
             using (var mock = AutoMock.GetLoose())
             {
                 mock.Mock<RPSPlayer>().Setup(p => p.SetSelection(Selection.Scissors));
-                var sut = mock.Create<Human>();
+                var hum = mock.Create<Human>();
 
-                sut.SetSelection(Selection.Scissors);
-
-                Assert.AreEqual(Selection.Scissors, sut.PlaySelection);
+                hum.SetSelection(Selection.Scissors);
+                
+                Assert.AreEqual(Selection.Scissors, hum.PlaySelection);
             }
         }
 
-
         [TestMethod]
-        public void PlayerComputerSetsASelection()
+        public void PlayerComputerSetsAMockSelection()
         {
             using (var mock = AutoMock.GetLoose())
             {
                 mock.Mock<IRandomSelection>().Setup(x => x.Select());
-                var sut = mock.Create<Computer>();
+                var comp = mock.Create<Computer>();
 
-                sut.SetRandomValue();
+                comp.SetRandomValue();
 
                 mock.Mock<IRandomSelection>().Verify(x => x.Select());
-                Assert.IsTrue(Enum.IsDefined(typeof(Selection), sut.PlaySelection));
+                Assert.IsTrue(Enum.IsDefined(typeof(Selection), comp.PlaySelection));
             }
+        }
+
+        [TestMethod]
+        public void PlayerComputerCanSetsASelection()
+        {
+            IRandomSelection randomSel = new RPSRandomSelection();
+            var comp = new Computer(randomSel);
+            comp.SetRandomValue();
+            Assert.IsTrue(Enum.IsDefined(typeof(Selection), comp.PlaySelection));
         }
 
         [TestMethod]
